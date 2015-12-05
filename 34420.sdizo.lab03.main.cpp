@@ -1,6 +1,8 @@
-//
-// Created by mwiton on 05.12.15.
-//
+/* SDIZO IS1 210b LAB03
+* Mateusz Witon
+* mwiton@wi.zut.edu.pl
+*/
+
 #include <iostream>
 #include <stddef.h>
 #include <fstream>
