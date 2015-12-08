@@ -39,15 +39,13 @@ private:
 
 };
 
-void test();
-
 Node::Node(int keyNode) {
     key = keyNode;
     left = NULL;
     right = NULL;
     tab = new char[256];
     for(int i=0; i<256; ++i){
-        tab[i] = (char)(rand()%(126 - 32)) + 32;
+        tab[i] = (char)(rand()%(127 - 32)) + 32;
     }
 }
 
@@ -113,15 +111,24 @@ void BST::remove(int i) {
     Node *parent = pointer;
     if(removeNode[0]->left==NULL){
         pointer = removeNode[0]->right;
-        while(pointer->left != NULL) {
-            parent = pointer;
-            pointer = pointer->left;
+        if (pointer->left != NULL) {
+            while (pointer->left != NULL) {
+                parent = pointer;
+                pointer = pointer->left;
+            }
+            replace(removeNode[0], pointer);
+            if (pointer->right) {
+                parent->left = pointer->right;
+            }
+            else parent->left = NULL;
         }
-        replace(removeNode[0], pointer);
-        if(pointer->right) {
-            parent->left = pointer->right;
+        else {
+            replace(removeNode[0], pointer);
+            if (pointer->right) {
+                removeNode[0]->right = pointer->right;
+            }
+            else parent->right = NULL;
         }
-        else parent->left = NULL;
         delete[] removeNode;
         return;
     }
@@ -155,7 +162,9 @@ void BST::replace(Node *node1, Node *node2) {
 }
 
 void BST::makeNull(Node *node, Node *node1) {
-    if(node->left->key == node1->key) node->left = NULL;
+    if(node->left) {
+        if (node->left->key == node1->key) node->left = NULL;
+    }
     else node->right = NULL;
 }
 
@@ -197,7 +206,7 @@ void BST::printPostOrder() {
     printPostOrder(root);
 }
 
-void test() {
+/*void test() {
     BST tree;
     tree.add(8);
     tree.add(10);
@@ -209,15 +218,18 @@ void test() {
     tree.add(7);
     tree.add(1);
     tree.remove(13);
-    //Node** stack = tree.find(6);
-    //std::cout << stack[0]->key  << " " << stack[1]->key << " " << stack[2]->key << "\n";
+    Node** stack = tree.find(6);
+    std::cout << stack[0]->key  << " " << stack[1]->key << " " << stack[2]->key << "\n";
+    for(int i=0; i<50; ++i){
+        std::cout << stack[0]->tab[i] << " ";
+    }
     tree.printPreOrder();
     std::cout << "\n\n";
     tree.printInOrder();
     std::cout << "\n\n";
     tree.printPostOrder();
     std::cout << "\n\n";
-}
+}*/
 
 int main(){
     clock_t begin, end;
