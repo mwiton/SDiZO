@@ -4,7 +4,7 @@
 */
 
 #include <iostream>
-#include <stddef.h>
+#include <ctime>
 #include <fstream>
 
 class Node{
@@ -14,7 +14,6 @@ public:
     Node *left;
     Node *right ;
     char *tab;
-    //~Node() { delete[] tab; }
 };
 
 class BST{
@@ -74,7 +73,7 @@ void BST::add(int key) {
 void BST::addMany(int X) {
     int key;
     for (int i = 0; i < X; ++i) {
-        key = (rand()%1000003) + 10;
+        key = (rand()*rand()%1000003) + 10;
         add(key);
     }
 }
@@ -129,7 +128,6 @@ void BST::remove(int i) {
             }
             else parent->right = NULL;
         }
-        delete[] removeNode;
         return;
     }
     pointer = removeNode[0]->left;
@@ -151,7 +149,6 @@ void BST::remove(int i) {
         }
         else parent->left = NULL;
     }
-    delete[] removeNode;
 }
 
 
