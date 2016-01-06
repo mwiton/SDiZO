@@ -255,19 +255,13 @@ void BST::dsw() {
                 currentNode = parentCurrentNode->right;
         }
         else{
-            if(currentNode->right != NULL) {
                 parentCurrentNode = currentNode;
                 currentNode = currentNode->right;
-            }
         }
     }
     //Etap 2.
     int n=0;
-    currentNode = root;
-    while(currentNode != NULL){
-        ++n;
-        currentNode = currentNode->right;
-    }
+    n = height();
     if(n<=2)
         return;
     int m=1;
@@ -309,14 +303,7 @@ int heightSubTree(Node* node){
 }
 
 int BST::height() {
-    if (root == NULL)
-        return 0;
-    int leftHeight = heightSubTree(root->left);
-    int rightHeight = heightSubTree(root->right);
-    if (leftHeight >= rightHeight)
-        return leftHeight;
-    else
-        return rightHeight;
+    return heightSubTree(root);
 }
 
 void test() {
