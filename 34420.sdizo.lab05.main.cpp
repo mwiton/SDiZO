@@ -1,4 +1,4 @@
-/* SDIZO IS1 210b LAB04
+/* SDIZO IS1 210b LAB05
    Mateusz Witon
    mwiton@wi.zut.edu.pl
 */

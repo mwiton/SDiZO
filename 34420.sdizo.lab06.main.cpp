@@ -1,4 +1,4 @@
-/* SDIZO IS1 210b LAB04
+/* SDIZO IS1 210b LAB06
    Mateusz Witon
    mwiton@wi.zut.edu.pl
 */
@@ -18,7 +18,6 @@ public:
     HeapMinMax(): table(nullptr), size(0) {}
     void add(int);
     void addMany(int);
-    Node** find(int);
     void removeMin();
     void removeMax();
     void removeAll();
