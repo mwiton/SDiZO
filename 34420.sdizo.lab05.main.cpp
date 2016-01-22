@@ -273,9 +273,9 @@ int AVL::height() {
     int leftHeight = heightSubTree(root->left);
     int rightHeight = heightSubTree(root->right);
     if (leftHeight >= rightHeight)
-        return leftHeight;
+        return leftHeight + 1;
     else
-        return rightHeight;
+        return rightHeight + 1;
 }
 
 void AVL::balance(Node *child, Node *parent) {

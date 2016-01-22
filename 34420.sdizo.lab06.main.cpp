@@ -254,7 +254,7 @@ void HeapMinMax::deleteLast() {
     table = newTab;
 }
 
-void test() {
+/*void test() {
     HeapMinMax tree;
     tree.add(8);
     tree.add(10);
@@ -274,7 +274,7 @@ void test() {
     std::cout << "\n";
     tree.printMax();
     std::cout << "\n";
-}
+}*/
 
 int main(){
     clock_t begin, end;
