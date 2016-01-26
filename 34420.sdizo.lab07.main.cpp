@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <ctime>
 #include "inlab07.h"
 
 const int TOWNS = 39;
@@ -46,16 +47,16 @@ int findTown(std::string town){
     return -1;
 }
 
-int* distancesDijkstraAlgorithm(int start){
+int* distancesDijkstraAlgorithm(int start, int end){
     std::vector<Node*> Q, S;
     std::pair<int, int> nodeW;
-    int p[TOWNS];
+    //int p[TOWNS];
     int* d = new int[TOWNS];
     Node* u;
     for(int i=0; i<TOWNS; ++i) {
         Q.push_back(towns[i]);
         d[i] = INT32_MAX;
-        p[i]=-1;
+        //p[i]=-1;
     }
     d[start]=0;
     while(Q.size() > 0){
@@ -65,6 +66,7 @@ int* distancesDijkstraAlgorithm(int start){
                 minIndex = i;
         }
         u = Q[minIndex];
+        if(u->key == end) return d;
         Q.erase(Q.begin()+minIndex);
         S.push_back(u);
         for(int i=0; i<u->neighbours.size(); ++i){
@@ -72,7 +74,7 @@ int* distancesDijkstraAlgorithm(int start){
             if(findNodeInVector(Q, towns[nodeW.first])){
                 if(d[nodeW.first] > d[u->key] + nodeW.second){
                     d[nodeW.first] = d[u->key] + nodeW.second;
-                    p[nodeW.first] = u->key;
+                    //p[nodeW.first] = u->key;
                 }
             }
         }
@@ -83,7 +85,7 @@ int* distancesDijkstraAlgorithm(int start){
 int dijkstraAlgorithm(std::string townA, std::string townB){
     int idTownA = findTown(townA);
     int idTownB = findTown(townB);
-    int *distances = distancesDijkstraAlgorithm(idTownA);
+    int *distances = distancesDijkstraAlgorithm(idTownA, idTownB);
     return distances[idTownB];
 }
 
@@ -137,8 +139,33 @@ int AAlgorithm(std::string townA, std::string townB){
 }
 
 int main(){
+    clock_t begin, end;
+    double time_spent;
     createTableTowns();
+    begin = clock();
     std::cout<<dijkstraAlgorithm("Szczecin", "Krakow")<<std::endl;
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    std::cout << "Czas wykonania: " << time_spent << std::endl;
+    begin = clock();
+    for(int i=0; i<1000; i++){
+        dijkstraAlgorithm("Szczecin", "Przemysl");
+    }
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    std::cout << "Czas wykonania: " << time_spent<< std::endl;;
+    begin = clock();
     std::cout<<AAlgorithm("Szczecin", "Krakow")<<std::endl;
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    std::cout << "Czas wykonania: " << time_spent<< std::endl;;
+    begin = clock();
+    for(int i=0; i<1000; i++){
+        AAlgorithm("Szczecin", "Przemysl");
+    }
+
+    end = clock();
+    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+    std::cout << "Czas wykonania: " << time_spent<< std::endl;;
     return 0;
 }
