@@ -1,6 +1,5 @@
-//
-// Created by mwiton on 19.01.16.
-//
+// Implementation of Dijkstra algorithm and A* algorithm
+
 #include <iostream>
 #include <vector>
 #include <cmath>
