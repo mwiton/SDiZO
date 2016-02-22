@@ -1,6 +1,4 @@
-/* SDIZO IS1 210b LAB05
-   Mateusz Witon
-   mwiton@wi.zut.edu.pl
+/* Implementaion of AVL tree
 */
 #include <iostream>
 #include <ctime>
