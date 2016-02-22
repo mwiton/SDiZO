@@ -1,6 +1,4 @@
-/* SDIZO IS1 210b LAB04
-   Mateusz Witon
-   mwiton@wi.zut.edu.pl
+/* Implementation of binary search tree with DSW algorithm
 */
 #include <iostream>
 #include <ctime>
