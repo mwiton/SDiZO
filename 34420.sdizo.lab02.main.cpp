@@ -1,6 +1,4 @@
-/* SDIZO IS1 210b LAB02
-* Mateusz Witon
-* mwiton@wi.zut.edu.pl
+/* Implementation of double linked list
 */
 
 #include <iostream>
