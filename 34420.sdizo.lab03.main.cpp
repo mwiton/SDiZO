@@ -1,6 +1,4 @@
-/* SDIZO IS1 210b LAB03
-* Mateusz Witon
-* mwiton@wi.zut.edu.pl
+/* Implementation of binary search tree
 */
 
 #include <iostream>
