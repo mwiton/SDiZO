@@ -1,6 +1,4 @@
-/* SDIZO IS1 210b LAB06
-   Mateusz Witon
-   mwiton@wi.zut.edu.pl
+/* Implementation of min-max heap
 */
 #include <iostream>
 #include <ctime>
